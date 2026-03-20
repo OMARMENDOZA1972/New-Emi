@@ -1,6 +1,6 @@
 # New Emi Institute - Plataforma Web 🌐
 
-![Logo New Emi](../img/logo.png)
+![Logo New Emi](/img/logo.png)
 
 Sitio web oficial de **New Emi Institute**, expertos en la enseñanza de idiomas con más de 20 años de trayectoria y certificación avalada por la **UTN**. Esta plataforma ofrece una experiencia moderna e intuitiva para alumnos y empresas interesadas en capacitación lingüística.
 
