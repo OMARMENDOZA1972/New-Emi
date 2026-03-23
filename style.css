@@ -3,7 +3,7 @@
   --purple-dark: #532B88;
   --purple-medium: #7042AF;
   --purple-light: #9B72CF;
-  --bg-soft: #F8F6FC;
+  --bg-soft: #d2c1f3;
   --white: #ffffff;
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-nav: rgba(83, 43, 136, 0.85);
@@ -273,6 +273,7 @@ body {
   display: block;
 }
 
+
 /* --- 6. CONTACTO & FORMULARIO --- */
 .contacto-wrapper {
   background: var(--white);
@@ -423,7 +424,13 @@ body {
   margin-bottom: 50px;
   padding: 0 20px;
 }
+
 /* --- ESTILO HAMBURGUESA Y RESPONSIVE (Móvil < 768px) --- */
+/* Oculta el menú hamburguesa por defecto en pantallas grandes */
+.mobile-toggle {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .mobile-toggle {
     display: block;
@@ -735,21 +742,83 @@ body {
   border-radius: 24px;
   overflow: hidden;
   text-decoration: none;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; /* Transición suave */
   display: flex;
   align-items: flex-end;
   padding: 30px;
   background-size: cover;
   background-position: center;
+  
+  /* EL BORDE SUTIL */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde blanco casi invisible */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra muy tenue */
 }
 
-.bento-item:hover { transform: translateY(-10px); }
+/* Efecto al pasar el mouse */
+.bento-item:hover { 
+  transform: translateY(-10px);
+  border-color: var(--purple-light); /* El borde se ilumina con el color de la marca */
+  box-shadow: 0 15px 30px rgba(83, 43, 136, 0.2); /* Sombra púrpura elegante */
+}
 
 /* Tamaños de las cajas */
-.children { grid-column: span 2; grid-row: span 2; background-image: linear-gradient(to top, rgba(83,43,136,0.8), transparent), url('img/children--course.png'); }
-.adults { grid-column: span 2; background-image: linear-gradient(to top, rgba(112,66,175,0.8), transparent), url('img/adult--course.png'); }
-.adolescents { background-image: linear-gradient(to top, rgba(155,114,207,0.8), transparent), url('img/adolescents--course.png'); }
-.incompany { background-image: linear-gradient(to top, rgba(45,20,80,0.8), transparent), url('img/header-incompany.png'); }
+/* --- ORGANIZACIÓN BENTO GRID (6 ELEMENTOS) --- */
+
+/* Columna 1 y 2 | Filas 1 y 2 (El más grande) */
+.children { 
+  grid-column: 1 / span 2; 
+  grid-row: 1 / span 2; 
+  height: 100%; /* Para que ocupe todo el alto de las 2 filas */
+  background-image: linear-gradient(to top, rgba(83,43,136,0.8), transparent), url('img/children--course.png'); 
+}
+
+/* Columna 3 y 4 | Fila 1 (Al lado de Children, arriba) */
+.adults { 
+  grid-column: 3 / span 2; 
+  grid-row: 1; 
+  background-image: linear-gradient(to top, rgba(112,66,175,0.8), transparent), url('img/adult--course.png'); 
+}
+
+/* Fila 2 (Debajo de Adults) - Aquí van los 4 pequeños de 1x1 */
+.adolescents { 
+  grid-column: 3; 
+  grid-row: 2; 
+  background-image: linear-gradient(to top, rgba(155,114,207,0.8), transparent), url('img/adolescents--course.png'); 
+}
+
+.intensive { 
+  grid-column: 4; 
+  grid-row: 2; 
+  background-image: linear-gradient(to top, rgba(45,20,80,0.8), transparent), url('img/header-intensivo.png'); 
+}
+
+/* Fila 3 - Los últimos dos ocupan 2 columnas cada uno para cerrar el diseño */
+.incompany { 
+  grid-column: span 2; 
+  height: 200px;
+  background-image: linear-gradient(to top, rgba(45,20,80,0.8), transparent), url('img/header-incompany.png'); 
+}
+
+.conversation { 
+  grid-column: span 2; 
+  height: 200px;
+  background-image: linear-gradient(to top, rgba(155,114,207,0.8), transparent), url('img/header-conversation.png'); 
+}
+
+/* --- AJUSTE RESPONSIVO --- */
+@media (max-width: 1024px) {
+  .bento-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: auto; 
+  }
+  .children, .adults, .incompany, .conversation { grid-column: span 2; height: 300px; }
+  .adolescents, .intensive { grid-column: span 1; height: 250px; }
+}
+
+@media (max-width: 768px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-item { grid-column: span 1 !important; grid-row: auto !important; height: 250px !important; }
+}
 
 .bento-content span { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
 .bento-content h3 { color: white; font-size: 1.8rem; margin: 0; }
