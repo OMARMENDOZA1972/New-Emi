@@ -341,7 +341,15 @@ body {
   opacity: 0.8;
   font-size: 0.9rem;
 }
+.footer-link {
+  color: inherit; /* Hereda el color del texto del footer */
+  text-decoration: none; /* Quita el subrayado */
+  transition: var(--transition);
+}
 
+.footer-link:hover {
+  color: var(--purple-light); /* Cambia al púrpura claro de la marca al pasar el mouse */
+}
 .footer-links h4, 
 .footer-contact h4 {
   margin-bottom: 25px;
